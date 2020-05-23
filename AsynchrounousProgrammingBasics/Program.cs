@@ -1,25 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace AsynchrounousProgrammingBasics
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            Run();            
-            Run();
+
+            for (int i = 0; i < 3; i++)
+            {
+                Run();
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                await RunAsync();
+            }            
         }
 
-        static async void Run()
+        static async Task RunAsync()
         {
-            var controller = new NameController();
-            for (int i = 0; i < 5; i++)            {
-                
-                var data = await controller.GetNames();
-                data.ForEach(x => Console.WriteLine($"Call {i + 1}, data: {x}"));                                
+            var controller = new PlayerController();
+            var tasks = new List<Task<Player>>();
+            for (int i = 1; i < 5; i++)            {
+
+                tasks.Add(controller.GetWinnerAsync(i));                
             }
-            Console.WriteLine("Completed!");
+
+            await Task.WhenAny(tasks).ContinueWith(result => {
+
+                Console.WriteLine($"The winner is : {result.Result.Result.Name}");
+
+                Console.WriteLine("Completed!");
+            });
+        }
+
+        static void Run()
+        {
+            var controller = new PlayerController();
+            var tasks = new List<Task<Player>>();
+            for (int i = 1; i < 5; i++)
+            {
+
+                var result = controller.GetWinner(i);
+                Console.WriteLine($"The winner is : {result.Name}");
+                Console.WriteLine("Completed!");
+            }
         }
     }
 }

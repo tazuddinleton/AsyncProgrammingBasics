@@ -21,7 +21,7 @@ namespace StockAnalyzer.Web.Controllers
             var data = await store.LoadStocks();
 
             if (!data.ContainsKey(ticker)) return NotFound();
-
+            Thread.Sleep(2000);
             return Json(data[ticker]);
         }
     }
