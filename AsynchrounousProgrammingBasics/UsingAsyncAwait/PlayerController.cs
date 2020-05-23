@@ -14,16 +14,9 @@ namespace AsynchrounousProgrammingBasics.UsingAsyncAwait
         }
         public async Task<Player> GetWinnerAsync(int id)
         {
-            try
-            {
-                Console.WriteLine($"Controller currently handling request: {id}");
-                var result = await _playerRepository.GetWinnerAsync(id);
-                return result;
-            }
-            catch (TimeoutException ex)
-            {
-                throw ex;
-            }
+            Console.WriteLine($"Controller currently handling request: {id}");
+            var result = await _playerRepository.GetWinnerAsync(id);
+            return result;
         }
 
         public Player GetWinner(int id)

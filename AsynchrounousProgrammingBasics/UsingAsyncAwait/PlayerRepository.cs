@@ -59,8 +59,8 @@ namespace AsynchrounousProgrammingBasics.UsingAsyncAwait
             {
                 throw new TimeoutException($"Timeout occured. Wait time: {wait}ms");
             }
-            Thread.Sleep(wait);
 
+            Thread.Sleep(wait);
             var res = _names.FirstOrDefault(x => x.Id == id);
             Console.WriteLine($"found {res.Name}");
             return res;
