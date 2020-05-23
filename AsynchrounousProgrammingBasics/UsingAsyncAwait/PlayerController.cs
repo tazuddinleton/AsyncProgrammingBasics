@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AsynchrounousProgrammingBasics
+namespace AsynchrounousProgrammingBasics.UsingAsyncAwait
 {
     public class PlayerController
     {
@@ -14,11 +14,17 @@ namespace AsynchrounousProgrammingBasics
         }
         public async Task<Player> GetWinnerAsync(int id)
         {
-            Console.WriteLine($"Controller currently handling request: {id}");
-            var result = await _playerRepository.GetWinnerAsync(id);
-            return result;
+            try
+            {
+                Console.WriteLine($"Controller currently handling request: {id}");
+                var result = await _playerRepository.GetWinnerAsync(id);
+                return result;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
+            }
         }
-
 
         public Player GetWinner(int id)
         {
@@ -26,8 +32,5 @@ namespace AsynchrounousProgrammingBasics
             var result =  _playerRepository.GetWinner(id);
             return result;
         }
-
-
-
     }
 }

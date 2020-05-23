@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AsynchrounousProgrammingBasics
+namespace AsynchrounousProgrammingBasics.UsingAsyncAwait
 {
     public class Player
     {
@@ -37,7 +37,11 @@ namespace AsynchrounousProgrammingBasics
             // Assuming data base call
             var wait = new Random().Next(0, 1000);
             Console.WriteLine($"waiting : {wait}, id: {id}");
-            
+
+            if (wait >= 500)
+            {
+                throw new TimeoutException($"Timeout occured. Wait time: {wait}ms");
+            }
             await Task.Delay(wait);
 
             var res = _names.FirstOrDefault(x => x.Id == id);
@@ -51,6 +55,10 @@ namespace AsynchrounousProgrammingBasics
             var wait = new Random().Next(0, 1000);
             Console.WriteLine($"waiting : {wait}, id: {id}");
 
+            if (wait >= 500)
+            {
+                throw new TimeoutException($"Timeout occured. Wait time: {wait}ms");
+            }
             Thread.Sleep(wait);
 
             var res = _names.FirstOrDefault(x => x.Id == id);
