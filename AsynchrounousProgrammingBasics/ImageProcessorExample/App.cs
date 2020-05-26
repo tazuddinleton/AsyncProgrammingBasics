@@ -19,8 +19,7 @@ namespace AsynchrounousProgrammingBasics.ImageProcessorExample
             var uri = new Uri("https://miro.medium.com/proxy/1*wxC3mcax_8XXR16ppuWYCQ.jpeg");
             var filename = "downloaded_image" + Path.GetExtension(uri.LocalPath);
             var newFilename = "downloaded_image_blurred" + Path.GetExtension(uri.LocalPath);
-
-  
+              
 
             Console.WriteLine("Started download...");
             var bytes = await DownloadImage(uri.AbsoluteUri);
@@ -40,13 +39,23 @@ namespace AsynchrounousProgrammingBasics.ImageProcessorExample
 
             Console.WriteLine("Completed!");
         }
-
+        // Using await without Task.Run() because of I/O-bounded operation
         static Task<byte[]> DownloadImage(string url)
         {
             var client = new HttpClient();
             return client.GetByteArrayAsync(url);
         }
 
+        // Using await without Task.Run() because of I/O-bounded operation
+        static async Task SaveImage(byte[] bytes, string imagePath)
+        {
+            using (var fileStream = new FileStream(imagePath, FileMode.Create))
+            {
+                await fileStream.WriteAsync(bytes, 0, bytes.Length);
+            }
+        }
+
+        // Using Task.Run(), because it's a CPU-bounded operation
         static async Task<byte[]> BlurImage(byte[] bytes)
         {
             return await Task.Run(() =>
@@ -60,13 +69,6 @@ namespace AsynchrounousProgrammingBasics.ImageProcessorExample
                 }
             });
         }
-
-        static async Task SaveImage(byte[] bytes, string imagePath)
-        {
-            using (var fileStream = new FileStream(imagePath, FileMode.Create))
-            {
-                await fileStream.WriteAsync(bytes, 0, bytes.Length);
-            }
-        }
+        
     }
 }
