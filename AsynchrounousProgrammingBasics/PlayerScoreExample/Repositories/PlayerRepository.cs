@@ -1,22 +1,14 @@
-﻿using System;
+﻿using AsynchrounousProgrammingBasics.Entities;
+using AsynchrounousProgrammingBasics.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AsynchrounousProgrammingBasics.UsingAsyncAwait
+namespace AsynchrounousProgrammingBasics.Repositories
 {
-    public class Player
-    {
-        public int Id { get;}
-        public string Name { get;}
-        public Player(int id, string name)
-        {
-            Id = id;
-            Name = name;
-        }
-    }
     public class PlayerRepository
     {
         private List<Player> _names = new List<Player>();
@@ -65,5 +57,24 @@ namespace AsynchrounousProgrammingBasics.UsingAsyncAwait
             Console.WriteLine($"found {res.Name}");
             return res;
         }
+
+        public Player GetPlayerById(int id)
+        {
+            // Assuming data base call
+            Console.WriteLine($"Getting player of id: {id}");
+            Thread.Sleep(2000);
+            var player = _names.FirstOrDefault(x => x.Id == id);
+            return player;
+        }
+
+        public async Task<Player> GetPlayerByIdAsync(int id)
+        {
+            // Assuming data base call
+            Console.WriteLine($"Getting player of id: {id}");
+            await Task.Delay(2000);
+            var player = _names.FirstOrDefault(x => x.Id == id);
+            return player;
+        }
+
     }
 }

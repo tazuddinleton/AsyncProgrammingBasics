@@ -27,13 +27,16 @@ namespace StockAnalyzer.Windows
             StockProgress.IsIndeterminate = true;
             #endregion
 
+            await Task.Run(async () =>
+            {
 
-            var client = new HttpClient();
-            
-            var response = await client.GetAsync($"http://localhost:61363/api/stocks/{Ticker.Text}");
-            var content = await response.Content.ReadAsStringAsync();
-            var data = JsonConvert.DeserializeObject<IEnumerable<StockPrice>>(content);                      
-            Stocks.ItemsSource = data;
+                var client = new HttpClient();
+
+                var response = await client.GetAsync($"http://localhost:61363/api/stocks/{Ticker.Text}");
+                var content = await response.Content.ReadAsStringAsync();
+                var data = JsonConvert.DeserializeObject<IEnumerable<StockPrice>>(content);
+                Stocks.ItemsSource = data;                
+            });
             #region Old
             //var client = new WebClient();
 
