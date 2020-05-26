@@ -33,11 +33,16 @@ namespace AsynchrounousProgrammingBasics.UsingAsyncAwait
             {
                 tasks.Add(controller.GetWinnerAsync(i));
             }
-            await Task.WhenAny(tasks).ContinueWith(result =>
-            {
+            await Task.WhenAny(tasks).ContinueWith( result =>
+            {                
                 Console.WriteLine($"The winner is : {result.Result.Result.Name}");
-                Console.WriteLine("Completed!");
+                Console.WriteLine("Completed!");                
             });
+            ////// Continuation
+            //// same as 
+            //var result = await Task.WhenAny(tasks);
+            //Console.WriteLine($"The winner is : {result.Result.Name}");
+            //Console.WriteLine("Completed!");
         }
 
         static async Task RunAsync()
@@ -58,5 +63,7 @@ namespace AsynchrounousProgrammingBasics.UsingAsyncAwait
                 Console.WriteLine("Completed!");
             }
         }
+
+       
     }
 }
