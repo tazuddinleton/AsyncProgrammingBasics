@@ -19,10 +19,10 @@ namespace AsynchrounousProgrammingBasics.UsingAsyncAwait
             catch (Exception ex)
             {
 
-                throw ex;
+                Console.WriteLine(ex.Message);
             }
         }
-
+        // Bad practice
         static async void ThrowException()
         {
             await Task.Delay(200);

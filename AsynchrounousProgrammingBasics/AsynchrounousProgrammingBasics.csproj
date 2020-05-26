@@ -3,7 +3,13 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <StartupObject>AsynchrounousProgrammingBasics.UsingAsyncAwait.AsyncVoid</StartupObject>
+    <StartupObject>AsynchrounousProgrammingBasics.UsingAsyncAwait.Program</StartupObject>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="AsyncVoid\**" />
+    <EmbeddedResource Remove="AsyncVoid\**" />
+    <None Remove="AsyncVoid\**" />
+  </ItemGroup>
 
 </Project>

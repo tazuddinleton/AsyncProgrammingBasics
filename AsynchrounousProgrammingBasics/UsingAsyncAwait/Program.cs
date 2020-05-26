@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AsynchrounousProgrammingBasics.UsingAsyncAwait
 {
-    class Program
+    static class Program
     {
         static async Task Main(string[] args)
         {
