@@ -12,6 +12,7 @@ namespace AsynchrounousProgrammingBasics.ImageProcessorExample
     // For I/O-bound operations avoid Task.Run()
     // instead use await without Task.Run()
     // https://app.pluralsight.com/guides/using-task-run-async-await
+    // https://app.pluralsight.com/guides/advanced-tips-using-task-run-async-wait
     static class App
     {
         static async Task Main(string[] args)

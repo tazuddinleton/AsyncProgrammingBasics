@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <StartupObject>AsynchrounousProgrammingBasics.ImageProcessorExample.App</StartupObject>
+    <StartupObject>AsynchrounousProgrammingBasics.TaskCancellation.App</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
