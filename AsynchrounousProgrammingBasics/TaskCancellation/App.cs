@@ -11,9 +11,8 @@ namespace AsynchrounousProgrammingBasics.TaskCancellation
         static async Task Main(string[] args)
         {
             
-            //await CancelFoo();
-            await ConfigureAwait();
-
+            await CancelFoo();
+            
         }
 
         static async Task CompleteFoo()
@@ -40,10 +39,8 @@ namespace AsynchrounousProgrammingBasics.TaskCancellation
         {
             var controller = new FooController();
             var cts = new CancellationTokenSource();
-            var task = controller.GetFoo(cts.Token);
-            if(!task.Wait(2000))                
-                cts.Cancel();
-            var foo = await task;            
+            cts.CancelAfter(2000);            
+            var foo = await controller.GetFoo(cts.Token);
             Console.WriteLine(foo);
         }
 
