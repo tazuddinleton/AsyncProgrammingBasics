@@ -32,7 +32,7 @@ namespace AsynchrounousProgrammingBasics.Repositories
 
             if (wait >= 500)
             {
-                throw new TimeoutException($"Timeout occured. Wait time: {wait}ms");
+                //throw new TimeoutException($"Timeout occured. Wait time: {wait}ms");
             }
             await Task.Delay(wait);
 
@@ -49,7 +49,7 @@ namespace AsynchrounousProgrammingBasics.Repositories
 
             if (wait >= 500)
             {
-                throw new TimeoutException($"Timeout occured. Wait time: {wait}ms");
+                //throw new TimeoutException($"Timeout occured. Wait time: {wait}ms");
             }
 
             Thread.Sleep(wait);

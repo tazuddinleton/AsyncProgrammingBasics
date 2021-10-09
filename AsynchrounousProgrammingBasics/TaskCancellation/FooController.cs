@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -10,7 +11,7 @@ namespace AsynchrounousProgrammingBasics.TaskCancellation
 {
     public class FooController
     {
-        private readonly HttpClient _client;
+        private readonly HtmlWeb _client;
         public FooController()
         {
             _client = new HttpClient();

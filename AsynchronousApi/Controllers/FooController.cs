@@ -17,7 +17,7 @@ namespace AsynchronousApi.Controllers
             _client = client;
         }
 
-        public async Task<IActionResult> GetFoo(CancellationToken cancellationToken)
+        public async Task<IActionResult> GetFoo(int id, CancellationToken cancellationToken)
         {
             try
             {
@@ -28,7 +28,7 @@ namespace AsynchronousApi.Controllers
                 Console.WriteLine("Cancelled!");
                 return NoContent();
             }
-            return Ok("Completed!");
+            return Ok($"Completed! id: {id}");
         }
 
         public async Task<IActionResult> GetBar(CancellationToken cancellationToken)
